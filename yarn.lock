@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-js-utils@^0.2.1:
-  version "0.2.1"
-  resolved "http://fhe.gunmetalblack.net/js-utils/-/js-utils-0.2.1.tgz#3cf2f81615bb0eff0962d0c39ea9f438a34979cb"
-  integrity sha512-qwXI6ekZ9BLXLidyA9T0ooZhhnUdTfb6ZQBr7Q9FDAdZCpDiLQi8NJx5bkdN9IpfGc8ilLrQT1VOdqNYgvoetg==
+js-utils@^1.0.0:
+  version "1.0.0"
+  resolved "http://fhe.gunmetalblack.net/js-utils/-/js-utils-1.0.0.tgz#8e4238cedfe2109e02914c62a306c1a803de2adc"
+  integrity sha512-MTDuUKiYM2U+jIWrkL8ZdoYFnVVpsPtBhqLQIMrSW6CCP2O/Mre9atrHD4TBzVGWeWsl58XfW9rleLnKM6783A==
   dependencies:
     moment "^2.24.0"
 
