@@ -9,6 +9,6 @@
   "author": "knfcz",
   "license": "ISC",
   "dependencies": {
-    "js-utils": "^1.0.0"
+    "js-utils": "^1.0.1"
   }
 }
