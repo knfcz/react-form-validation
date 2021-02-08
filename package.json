@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "knfcz",
+  "author": "knfcz <knfcz@gunmetalblack.net>",
   "license": "ISC",
   "dependencies": {
     "js-utils": "^1.0.1"
