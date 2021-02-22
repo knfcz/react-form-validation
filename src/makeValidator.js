@@ -13,6 +13,10 @@ const deepMerge = require('js-utils/deepMerge');
 const makeValidator = (options = {}) => (fieldsValidationRules, [formState, setFormState]) => {
     const [isFormValid, newFormState] = Object.keys(fieldsValidationRules).reduce(
         ([formValid, newFormState], fieldName) => {
+            if(!isPlainObject(newFormState[fieldName])) {
+                throw new Error(`Field "${fieldName}" has some validation rules but is not set in the form state.`);
+            }
+
             const errorMessages = _validateField(
                 fieldsValidationRules[fieldName],
                 newFormState[fieldName].value,
