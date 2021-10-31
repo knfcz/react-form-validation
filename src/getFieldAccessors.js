@@ -1,4 +1,4 @@
-const { curry, isPlainObject } = require('js-utils');
+const { curry, isPlainObject } = require('@knfcz/js-utils');
 
 const _getFieldValue = state => fieldName => {
     if(!isPlainObject(state[fieldName])) {

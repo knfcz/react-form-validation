@@ -1,5 +1,5 @@
-const isPlainObject = require('js-utils/isPlainObject');
-const deepMerge = require('js-utils/deepMerge');
+const isPlainObject = require('@knfcz/js-utils/isPlainObject');
+const deepMerge = require('@knfcz/js-utils/deepMerge');
 
 /**
  * Applique les regles de validations aux valeurs des champs du formulaire, et ajoute les message d'erreur corres
