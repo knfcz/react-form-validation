@@ -1,5 +1,4 @@
-const isPlainObject = require('@knfcz/js-utils/isPlainObject');
-const deepMerge = require('@knfcz/js-utils/deepMerge');
+const {isPlainObject, deepMerge} = require('@knfcz/js-utils');
 
 /**
  * Applique les regles de validations aux valeurs des champs du formulaire, et ajoute les message d'erreur corres
@@ -13,7 +12,7 @@ const deepMerge = require('@knfcz/js-utils/deepMerge');
 const makeValidator = (options = {}) => (fieldsValidationRules, [formState, setFormState]) => {
     const [isFormValid, newFormState] = Object.keys(fieldsValidationRules).reduce(
         ([formValid, newFormState], fieldName) => {
-            if(!isPlainObject(newFormState[fieldName])) {
+            if (!isPlainObject(newFormState[fieldName])) {
                 throw new Error(`Field "${fieldName}" has some validation rules but is not set in the form state.`);
             }
 
@@ -57,7 +56,7 @@ const _validateField = (rules, value, options) =>
         let getRuleErrorMessage;
 
         if (isPlainObject(ruleOrOptions)) {
-            ({ rule: applyRule, getErrorMessage: getRuleErrorMessage } = ruleOrOptions);
+            ({rule: applyRule, getErrorMessage: getRuleErrorMessage} = ruleOrOptions);
         } else {
             applyRule = ruleOrOptions;
         }
@@ -98,7 +97,7 @@ const _validateField = (rules, value, options) =>
 const _getRuleErrorMessage = (
     errorName,
     errorMessageParameters,
-    { getRuleErrorMessage, getErrorMessage },
+    {getRuleErrorMessage, getErrorMessage},
 ) => {
     let errorMessage = errorName;
 

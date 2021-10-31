@@ -2,14 +2,7 @@
 # yarn lockfile v1
 
 
-js-utils@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.gunmetalblack.net/js-utils/-/js-utils-1.0.1.tgz#9665455497ba450b76d53fe1c58239e64531c659"
-  integrity sha512-U96m1puyg3kjH0mMo7K70CFX455Q3bOz1GdVbg60nNn1TANTivOrZzAAX+znMNJPBHIhAJQ/mOiklMu7RRYbkA==
-  dependencies:
-    moment "^2.24.0"
-
-moment@^2.24.0:
-  version "2.29.1"
-  resolved "https://registry.gunmetalblack.net/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
-  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
+"@knfcz/js-utils@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.gunmetalblack.net/@knfcz%2fjs-utils/-/js-utils-2.0.0.tgz#d01919fbe6861f5f8fe8e7c95912800b5a248b33"
+  integrity sha512-ofaFC8IALCHoHftlb1sNSWx37FKGpaMzilbyMwL4i6QUmlp4XO2/RlJI7MNf+nTuG++O3vw/sgmaopFZRZ6vuQ==
