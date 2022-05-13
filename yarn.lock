@@ -2,7 +2,14 @@
 # yarn lockfile v1
 
 
-"@knfcz/js-utils@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.gunmetalblack.net/@knfcz%2fjs-utils/-/js-utils-2.0.0.tgz#d01919fbe6861f5f8fe8e7c95912800b5a248b33"
-  integrity sha512-ofaFC8IALCHoHftlb1sNSWx37FKGpaMzilbyMwL4i6QUmlp4XO2/RlJI7MNf+nTuG++O3vw/sgmaopFZRZ6vuQ==
+"@knfcz/js-utils@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@knfcz/js-utils/-/js-utils-3.0.3.tgz#bdb5674c93575b6877df309b0fb5a2b7f6d76bfb"
+  integrity sha512-hjlA7qvoOeagtJy8242WW0A66x/ywBkho7ica3bSyBJPqXQxrJAwP+BTo+/cdbqL2aTio2w14OrTAjj5vi99Ag==
+  dependencies:
+    ts-curry "^1.0.4"
+
+ts-curry@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/ts-curry/-/ts-curry-1.0.4.tgz#cf677765e0dd4dbb21cf989d6a7586b5d5e175e1"
+  integrity sha512-mJGJ6jcY6gm+tYUcw5gBqHaSkb1Mw3w28PbRJAZP+kraalEv6MpMHy+y3fsTBhQpcR7BpcqDmRcvdC4sn/6U5A==
