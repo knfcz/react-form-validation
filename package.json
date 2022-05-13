@@ -9,6 +9,6 @@
   "author": "knfcz <knfcz@gunmetalblack.net>",
   "license": "ISC",
   "dependencies": {
-    "@knfcz/js-utils": "^3.0.3"
+    "@knfcz/js-utils": "^3.0.4"
   }
 }
