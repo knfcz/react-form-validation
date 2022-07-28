@@ -2,12 +2,36 @@
 # yarn lockfile v1
 
 
-"@knfcz/js-utils@^3.0.3":
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/@knfcz/js-utils/-/js-utils-3.0.3.tgz#bdb5674c93575b6877df309b0fb5a2b7f6d76bfb"
-  integrity sha512-hjlA7qvoOeagtJy8242WW0A66x/ywBkho7ica3bSyBJPqXQxrJAwP+BTo+/cdbqL2aTio2w14OrTAjj5vi99Ag==
+"@knfcz/js-utils@^3.0.4":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@knfcz/js-utils/-/js-utils-3.0.5.tgz#8852c63775722305125055ffe6c62832e63d98a6"
+  integrity sha512-QhPIkBIQCXU0cIx2Xc0WyrJw8VayF0VTBXCdCaWJdZFvbIwFGKHPRVrHy/UhCCP/v6x3vbVWkcEq2KPTbWlj/A==
   dependencies:
     ts-curry "^1.0.4"
+
+"@knfcz/prettierrc@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@knfcz/prettierrc/-/prettierrc-1.0.1.tgz#7683354a21c841fefe1e319aeadbb790aa6d4cb5"
+  integrity sha512-2Bj9qt9uiOh1jBj+hGzkjkiemzX0mxgQK4gc0wgsnGzQJtEQQUTd4+uyALDuvgRiiTzGwkF4JEVwoVAgY4J4gA==
+
+"js-tokens@^3.0.0 || ^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
+  integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
+
+loose-envify@^1.1.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
+  integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
+  dependencies:
+    js-tokens "^3.0.0 || ^4.0.0"
+
+react@^18.2.0:
+  version "18.2.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
+  integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
+  dependencies:
+    loose-envify "^1.1.0"
 
 ts-curry@^1.0.4:
   version "1.0.4"

@@ -1,62 +1,54 @@
-const {isPlainObject, deepMerge} = require('@knfcz/js-utils');
+const { isPlainObject } = require('@knfcz/js-utils');
+const { useState } = require('react');
 
-/**
- * Applique les regles de validations aux valeurs des champs du formulaire, et ajoute les message d'erreur corres
- *
- * @param options   Objet de config pour le validator, peut contenir:
- *                  - getErrorMessage: (func) Récupère le nom de la regle ayant échoué, et ses arguments,
- *                                     et doit renvoyer le message d'erreur correspondant
- *
- * @return {function(*=, [*, *]): {}}
- */
-const makeValidator = (options = {}) => (fieldsValidationRules, [formState, setFormState]) => {
-    const [isFormValid, newFormState] = Object.keys(fieldsValidationRules).reduce(
-        ([formValid, newFormState], fieldName) => {
-            if (!isPlainObject(newFormState[fieldName])) {
-                throw new Error(`Field "${fieldName}" has some validation rules but is not set in the form state.`);
-            }
+const makeValidator = (options = {}) => {
+    // Retourne un hook gérant la validation et les messages d'erreurs
+    return (validationRules, formState) => {
+        const fieldNames = Object.keys(validationRules);
+        const [errors, setErrors] = useState(initErrorsState(fieldNames));
 
-            const errorMessages = _validateField(
-                fieldsValidationRules[fieldName],
-                newFormState[fieldName].value,
-                options,
+        // On crée la fonction de validation de formulaire
+        const validateForm = () => {
+            const [isFormValid, formErrors] = fieldNames.reduce(
+                ([formValid, formErrors], fieldName) => {
+                    const errorMessages = _validateField(
+                        validationRules[fieldName],
+                        formState[fieldName],
+                        options,
+                    );
+
+                    if (errorMessages.length) {
+                        formValid = false;
+                        formErrors[fieldName] = errorMessages[0];
+                    } else {
+                        formErrors[fieldName] = '';
+                    }
+
+                    return [formValid, formErrors];
+                },
+                [true, {}],
             );
 
-            if (errorMessages.length) {
-                formValid = false;
-                newFormState[fieldName].error = errorMessages[0];
-            } else {
-                newFormState[fieldName].error = '';
-            }
+            setErrors(formErrors);
 
-            return [formValid, newFormState];
-        },
-        [true, deepMerge({}, formState)],
-    );
+            return isFormValid;
+        };
 
-    setFormState(newFormState);
-
-    return isFormValid;
+        return {
+            validateForm,
+            formErrors: errors,
+        };
+    };
 };
 
-/**
- * Teste chaques règles de validation pour la valeur donnée,
- * et renvoie les messages d'erreurs des regles ayant échouées
- *
- * @params rules                            Tableau de fonctions ou d'objet au format { rule: $function, ...options }
- * @params {string|number|boolean} value    Valeur à tester
- * @param {object} options                  Options de traduction du message d'erreur
- * @param options.getErrorMessage           Renvoie un message d'erreur à afficher dans le champs
- *
- * @return {array}  Message d'erreurs des règles ayant échouées
- */
 const _validateField = (rules, value, options) =>
     rules.reduce((errorMessages, ruleOrOptions) => {
         let applyRule;
         let getRuleErrorMessage;
 
         if (isPlainObject(ruleOrOptions)) {
-            ({rule: applyRule, getErrorMessage: getRuleErrorMessage} = ruleOrOptions);
+            ({ rule: applyRule, getErrorMessage: getRuleErrorMessage } =
+                ruleOrOptions);
         } else {
             applyRule = ruleOrOptions;
         }
@@ -81,23 +73,10 @@ const _validateField = (rules, value, options) =>
         return errorMessages;
     }, []);
 
-/**
- * Renvoie un message d'erreur traduit en fonction d'un code erreur
- *
- * Si une fonction de traduction est spécifiée pour la règle, elle sera utilisée,
- * sinon, celle passée dans les options du validateur, si aucune erreur n'est définie, le code erreur sera renvoyé
- *
- * @param errorName                      Nom de la règle ayant échoué
- * @param errorMessageParameters         Variables à utiliser dans les messages d'erreurs
- * @param options.getRuleErrorMessage    Fonction de traduction passé dans les paramètres de la regle de validation
- * @param options.getErrorMessage        Fonction de traduction passé dans les paramètres du validateur
- *
- * @return {string}
- */
 const _getRuleErrorMessage = (
     errorName,
     errorMessageParameters,
-    {getRuleErrorMessage, getErrorMessage},
+    { getRuleErrorMessage, getErrorMessage },
 ) => {
     let errorMessage = errorName;
 
@@ -109,5 +88,12 @@ const _getRuleErrorMessage = (
 
     return errorMessage;
 };
+
+const initErrorsState = fieldNames =>
+    fieldNames.reduce((errors, fieldName) => {
+        errors[fieldName] = '';
+
+        return errors;
+    }, {});
 
 module.exports = makeValidator;

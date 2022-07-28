@@ -1,14 +1,19 @@
 {
-  "name": "@knfcz/react-form-validation",
-  "version": "1.1.10",
-  "description": "Simple form validation library for react and react-native",
-  "main": "src/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "knfcz <knfcz@gunmetalblack.net>",
-  "license": "ISC",
-  "dependencies": {
-    "@knfcz/js-utils": "^3.0.4"
-  }
+    "name": "@knfcz/react-form-validation",
+    "version": "1.1.10",
+    "description": "Simple form validation library for react and react-native",
+    "main": "src/index.js",
+    "prettier": "@knfcz/prettierrc",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "knfcz <knfcz@gunmetalblack.net>",
+    "license": "ISC",
+    "dependencies": {
+        "@knfcz/js-utils": "^3.0.4",
+        "react": "^18.2.0"
+    },
+    "devDependencies": {
+        "@knfcz/prettierrc": "^1.0.1"
+    }
 }
