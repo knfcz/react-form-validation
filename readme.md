@@ -94,7 +94,7 @@ const UserForm = props => {
     });
 
     // 2 - Use the hook to get the validation function and the current form errors
-    const { formErrors, validateForm } = useValidation(
+    const { formErrors, validateForm } = useFormValidation(
         validationRules,
         formValues,
     );
