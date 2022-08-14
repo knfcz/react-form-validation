@@ -2,6 +2,14 @@
 
 Simple form validation hook for react/react-native
 
+Table of content:
+_ [Installing](#installing)
+_ [Setup](#setup)
+_ [Usage](#usage)
+_ [Available validation rules](#available-validation-rules)
+_ [Creating your own validation rules](#creating-your-own-validation-rules)
+_ [Some tips](#some-tips)
+
 ## Installing
 
 Install it with:
@@ -231,9 +239,10 @@ These rules can be used like this
 // src/components/kitten/KittenForm.jsx
 
 const validationRules = {
+    // All these rules do the same thing btw
     name: [minLength(6)],
     gangName: [isValidGangName],
-    anotherValue: [atLeast6CharactersLong]
+    anotherValue: [atLeast6CharactersLong],
 };
 ```
 
@@ -243,14 +252,17 @@ One nice way to manage your validation rules is to centralize them somewhere in 
 
 ```js
 // hooks/useFormValidation.js
-import { makeValidator, rules as defaultRules } from '@knfcz/react-form-validation';
+import {
+    makeValidator,
+    rules as defaultRules,
+} from '@knfcz/react-form-validation';
 
 // ...
 
 export const rules = {
     ...defaultRules,
-    isValidFirstName: defaultRules.minLength(2),
-    isValidLastName: defaultRules.minLength(2),
-    isAgeValid: defaultRules.lengthBetween(18, 99),
+    isValidFirstName: [defaultRules.minLength(2)],
+    isValidLastName: [defaultRules.minLength(2)],
+    isAgeValid: [defaultRules.numberBetween(18, 99)],
 };
 ```
