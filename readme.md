@@ -190,7 +190,7 @@ Fails if the value is greater than max
 
 ## Creating your own validation rules
 
-Validation rules always get a value as a params and should return:
+Validation rules always get a value as a param and should return:
 
 -   If the value is valid: false
 -   If invalid: A tuple containing the error name and parameters (if any)
@@ -233,6 +233,7 @@ These rules can be used like this
 const validationRules = {
     name: [minLength(6)],
     gangName: [isValidGangName],
+    anotherValue: [atLeast6CharactersLong]
 };
 ```
 
@@ -242,14 +243,14 @@ One nice way to manage your validation rules is to centralize them somewhere in 
 
 ```js
 // hooks/useFormValidation.js
-import { rules as defaultRules } from '@knfcz/react-form-validation';
+import { makeValidator, rules as defaultRules } from '@knfcz/react-form-validation';
 
 // ...
 
 export const rules = {
     ...defaultRules,
-    isValidFirstName: rules.minLength(2),
-    isValidLastName: rules.minLength(2),
-    isAgeValid: rules.lengthBetween(18, 99),
+    isValidFirstName: defaultRules.minLength(2),
+    isValidLastName: defaultRules.minLength(2),
+    isAgeValid: defaultRules.lengthBetween(18, 99),
 };
 ```
