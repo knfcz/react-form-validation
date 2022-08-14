@@ -3,12 +3,13 @@
 Simple form validation hook for react/react-native
 
 Table of content:
-_ [Installing](#installing)
-_ [Setup](#setup)
-_ [Usage](#usage)
-_ [Available validation rules](#available-validation-rules)
-_ [Creating your own validation rules](#creating-your-own-validation-rules)
-_ [Some tips](#some-tips)
+
+- [Installing](#installing)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Available validation rules](#available-validation-rules)
+- [Creating your own validation rules](#creating-your-own-validation-rules)
+- [Some tips](#some-tips)
 
 ## Installing
 
