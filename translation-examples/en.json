@@ -1,0 +1,18 @@
+{
+    "form": {
+        "validationError": {
+            "required": "This field is required",
+            "lengthBetween": "This field must be between $min and $max characters",
+            "minLength": "This field must be at least $min characters",
+            "maxLength": "This field should not be greater than $min characters",
+            "validEmail": "This field should contain a valid email address",
+            "equals": "This field is should be equal to «$targetFieldName»",
+            "validPhoneNumber": "This is not a valid phone number",
+            "validLandlinePhoneNumber": "This is not a valid landline phone number",
+            "validMobilePhoneNumber": "This is not a valid mobile phone number",
+            "numberBetween": "This field must be between $min and $max",
+            "numberBelow": "This field must be below $max",
+            "numberAbove": "This field must be above $min"
+        }
+    }
+}

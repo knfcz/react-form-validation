@@ -43,6 +43,8 @@ export default makeValidator({
 
 You can pass a translation function to makeValidator, it will receive the rule name and parameters and should return the corresponding validation error message (the one you want to show to your end user)
 
+Note: if you use [@knfcz/translator](https://www.npmjs.com/package/@knfcz/translator), you can find some translation examples in the /translation-examples folder in this repo :^)
+
 ## Usage
 
 In your form component, create a validationRules object and specify your validation rules
@@ -62,7 +64,7 @@ const validationRules = {
         {
             rule: rules.isValidEmail,
             // Here you can specify another translation function
-            getErrorMessage: (errorName, errorMessage) => {
+            getErrorMessage: (errorName, errorMessageParameters) => {
                 // If the email is invalid, this function will be used to generate the error message
                 return 'bruh';
             },
