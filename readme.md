@@ -130,7 +130,7 @@ const UserForm = props => {
 };
 ```
 
-## Availables validation rules
+## Available validation rules
 
 > required
 
