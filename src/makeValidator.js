@@ -46,8 +46,8 @@ const _validateField = (rules, value, options) =>
         let getRuleErrorMessage;
 
         if (isPlainObject(ruleOrOptions)) {
-            ({ rule: applyRule, getErrorMessage: getRuleErrorMessage } =
-                ruleOrOptions);
+            applyRule = ruleOrOptions.rule;
+            getRuleErrorMessage = options.getErrorMessage;
         } else {
             applyRule = ruleOrOptions;
         }
@@ -79,15 +79,15 @@ const _getRuleErrorMessage = (
     errorMessageParameters,
     { getRuleErrorMessage, getErrorMessage },
 ) => {
-    let errorMessage = errorName;
-
     if (typeof getRuleErrorMessage === 'function') {
-        errorMessage = getRuleErrorMessage(errorName, errorMessageParameters);
-    } else if (typeof getErrorMessage === 'function') {
-        errorMessage = getErrorMessage(errorName, errorMessageParameters);
+        return getRuleErrorMessage(errorName, errorMessageParameters);
     }
 
-    return errorMessage;
+    if (typeof getErrorMessage === 'function') {
+        return getErrorMessage(errorName, errorMessageParameters);
+    }
+
+    return errorName;
 };
 
 const _initErrorsState = fieldNames =>
