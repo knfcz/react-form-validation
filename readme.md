@@ -32,18 +32,16 @@ Create a **useFormValidation.js** file in your project and initialize your custo
 import { makeValidator } from '@knfcz/react-form-validation';
 import translate from '../utils/translate'; // <- Some custom translation function
 
-const options = {
+export default makeValidator({
     getErrorMessage: (errorName, errorMessageParameters) =>
         translate(
             `form.validation.errors.${errorName}`,
             errorMessageParameters,
         ),
-};
-
-export default makeValidator(options);
+});
 ```
 
-You can pass a translation function to makeValidator, it will receive the rule name and parameters and should return the corresponding validation error message
+You can pass a translation function to makeValidator, it will receive the rule name and parameters and should return the corresponding validation error message (the one you want to show to your end user)
 
 ## Usage
 
@@ -143,61 +141,22 @@ const UserForm = props => {
 
 ## Available validation rules
 
-> required
-
-Fails if the value is empty
-
-> lengthBetween(min, max)
-
-Fails if the value is too long/short
-
-> minLength(min)
-
-Fails if the value is too short
-
-> maxLength(max)
-
-Fails if the value is too long
-
-> match(regex, humanReadableFormat = '', errorName = 'match')
-
-Fails if the values doesn't match the given regex
-
-> validEmail
-
-Fails if the value is not a valid email
-
-> validPhoneNumber
-
-Fails if the value is not a valid phone number
-
-> validMobilePhoneNumber
-
-Fails if the value is not a valid mobile phone number
-
-> validLandlinePhoneNumber
-
-Fails if the value is not a valid landline phone number
-
-> validPostalCode
-
-Fails if the value is not a valid postal code
-
-> equals(targetValue, targetFieldName)
-
-Fails if the value is different from targetValue
-
-> numberBetween(min, max)
-
-Fails if the value is not between min and max
-
-> numberAbove(min)
-
-Fails if the value is not lesser than min
-
-> numberBelow(max)
-
-Fails if the value is greater than max
+| Rule                                                        | Description                                             |
+| ----------------------------------------------------------- | ------------------------------------------------------- |
+| required                                                    | Fails if the value is empty                             |
+| lengthBetween(min, max)                                     | Fails if the value is too long/short                    |
+| minLength(min)                                              | Fails if the value is too short                         |
+| maxLength(max)                                              | Fails if the value is too long                          |
+| match(regex, humanReadableFormat = '', errorName = 'match') | Fails if the values doesn't match the given regex       |
+| validEmail                                                  | Fails if the value is not a valid email                 |
+| validPhoneNumber                                            | Fails if the value is not a valid phone number          |
+| validMobilePhoneNumber                                      | Fails if the value is not a valid mobile phone number   |
+| validLandlinePhoneNumber                                    | Fails if the value is not a valid landline phone number |
+| validPostalCode                                             | Fails if the value is not a valid postal code           |
+| equals(targetValue, targetFieldName)                        | Fails if the value is different from targetValue        |
+| numberBetween(min, max)                                     | Fails if the value is not between min and max           |
+| numberAbove(min)                                            | Fails if the value is less or equal to min              |
+| numberBelow(max)                                            | Fails if the value is greater or equal to max           |
 
 ## Creating your own validation rules
 
@@ -233,19 +192,20 @@ const minLength = min => value => {
 };
 
 // By using this method, you can easily make more specialized validation rules
-const isValidGangName = minLength(6);
+const isValidArticleTitle = minLength(6);
 ```
 
 These rules can be used like this
 
 ```js
-// src/components/kitten/KittenForm.jsx
+// src/components/kitten/ArticleForm.jsx
 
 const validationRules = {
-    // All these rules do the same thing btw
-    name: [minLength(6)],
-    gangName: [isValidGangName],
-    anotherValue: [atLeast6CharactersLong],
+    title: [atLeast6CharactersLong],
+    // or
+    title: [minLength(6)],
+    // or
+    title: [isValidArticleTitle],
 };
 ```
 
@@ -264,8 +224,13 @@ import {
 
 export const rules = {
     ...defaultRules,
-    isValidFirstName: [defaultRules.minLength(2)],
-    isValidLastName: [defaultRules.minLength(2)],
-    isAgeValid: [defaultRules.numberBetween(18, 99)],
+    // User rules
+    isValidFirstName: defaultRules.minLength(2),
+    isValidLastName: defaultRules.minLength(2),
+    isAgeValid: defaultRules.numberBetween(18, 99),
+
+    // Article rules
+    isValidArticleTitle: defaultRules.lengthBetween(6, 80),
+    // ...
 };
 ```
