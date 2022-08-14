@@ -1,15 +1,17 @@
 # react-form-validation
 
+[![npm version](https://img.shields.io/npm/v/@knfcz/react-form-validation.svg?style=flat)](https://www.npmjs.com/package/@knfcz/react-form-validation)
+
 Simple form validation hook for react/react-native
 
 Table of content:
 
-- [Installing](#installing)
-- [Setup](#setup)
-- [Usage](#usage)
-- [Available validation rules](#available-validation-rules)
-- [Creating your own validation rules](#creating-your-own-validation-rules)
-- [Some tips](#some-tips)
+-   [Installing](#installing)
+-   [Setup](#setup)
+-   [Usage](#usage)
+-   [Available validation rules](#available-validation-rules)
+-   [Creating your own validation rules](#creating-your-own-validation-rules)
+-   [Some tips](#some-tips)
 
 ## Installing
 
