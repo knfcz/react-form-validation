@@ -2,12 +2,11 @@ const { isPlainObject } = require('@knfcz/js-utils');
 const { useState } = require('react');
 
 const makeValidator = (options = {}) => {
-    // Retourne un hook gérant la validation et les messages d'erreurs
+    // Returns a custom form validation hook
     return (validationRules, formState) => {
         const fieldNames = Object.keys(validationRules);
-        const [errors, setErrors] = useState(initErrorsState(fieldNames));
+        const [errors, setErrors] = useState(_initErrorsState(fieldNames));
 
-        // On crée la fonction de validation de formulaire
         const validateForm = () => {
             const [isFormValid, formErrors] = fieldNames.reduce(
                 ([formValid, formErrors], fieldName) => {
@@ -57,11 +56,13 @@ const _validateField = (rules, value, options) =>
             return errorMessages;
         }
 
-        const [errorName, errorMessageParameters] = applyRule(value);
+        const error = applyRule(value);
 
-        if (!errorName) {
+        if (!error) {
             return errorMessages;
         }
+
+        const [errorName, errorMessageParameters] = error;
 
         errorMessages.push(
             _getRuleErrorMessage(errorName, errorMessageParameters, {
@@ -89,7 +90,7 @@ const _getRuleErrorMessage = (
     return errorMessage;
 };
 
-const initErrorsState = fieldNames =>
+const _initErrorsState = fieldNames =>
     fieldNames.reduce((errors, fieldName) => {
         errors[fieldName] = '';
 

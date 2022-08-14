@@ -13,7 +13,7 @@ const required = (val = false) => {
         return ['required'];
     }
 
-    return [false];
+    return false;
 };
 
 const requiredIf = bool => (bool ? required : null);
@@ -22,7 +22,7 @@ const lengthBetween =
     (min, max = 999) =>
     (val = '') => {
         if (isEmpty(val) || (val.length >= min && val.length <= max)) {
-            return [false];
+            return false;
         }
 
         return ['lengthBetween', { min, max }];
@@ -30,7 +30,7 @@ const lengthBetween =
 
 const minLength = min => val => {
     if (isEmpty(val) || val.length >= min) {
-        return [false];
+        return false;
     }
 
     return ['minLength', { min }];
@@ -38,7 +38,7 @@ const minLength = min => val => {
 
 const maxLength = max => val => {
     if (isEmpty(val) || val.length <= max) {
-        return [false];
+        return false;
     }
 
     return ['maxLength', { max }];
@@ -48,7 +48,7 @@ const match =
     (regex, humanReadableFormat = '', errorName = 'match') =>
     val => {
         if (isEmpty(val) || regex.test(val)) {
-            return [false];
+            return false;
         }
 
         return [errorName, { humanReadableFormat }];
@@ -74,20 +74,23 @@ const validPostalCode = match(POSTAL_CODE_REGEX, '123456', 'validPostalCode');
 
 const equals = (targetValue, targetFieldName) => val => {
     if (val === targetValue) {
-        return [false];
+        return false;
     }
 
     return ['equals', { targetValue, targetFieldName }];
 };
 
-const numberBetween = (min, max) => val =>
-    isEmpty(val) || (val >= min && val <= max)
-        ? [false]
-        : ['numberBetween', { min, max }];
+const numberBetween = (min, max) => val => {
+    if (isEmpty(val) || (val >= min && val <= max)) {
+        return false;
+    }
+
+    return ['numberBetween', { min, max }];
+};
 
 const numberBelow = max => val => {
     if (isEmpty(val) || val < max) {
-        return [false];
+        return false;
     }
 
     return ['numberBelow', { max }];
@@ -95,7 +98,7 @@ const numberBelow = max => val => {
 
 const numberAbove = min => val => {
     if (isEmpty(val) || val > min) {
-        return [false];
+        return false;
     }
 
     return ['numberAbove', { min }];
