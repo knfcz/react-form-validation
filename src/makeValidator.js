@@ -1,29 +1,29 @@
 const { isPlainObject } = require('@knfcz/js-utils');
 const { useState } = require('react');
 
-const makeValidator = (options = {}) => {
-    // Returns a custom form validation hook
-    return (validationRules, formState) => {
+const makeValidator =
+    (options = {}) =>
+    (validationRules, formState) => {
         const fieldNames = Object.keys(validationRules);
         const [errors, setErrors] = useState(_initErrorsState(fieldNames));
 
         const validateForm = () => {
             const [isFormValid, formErrors] = fieldNames.reduce(
-                ([formValid, formErrors], fieldName) => {
-                    const errorMessages = _validateField(
+                ([isFormValid, formErrors], fieldName) => {
+                    const errorMessage = _validateField(
                         validationRules[fieldName],
                         formState[fieldName],
                         options,
                     );
 
-                    if (errorMessages.length) {
-                        formValid = false;
-                        formErrors[fieldName] = errorMessages[0];
-                    } else {
+                    if (errorMessage === false) {
                         formErrors[fieldName] = '';
+                    } else {
+                        isFormValid = false;
+                        formErrors[fieldName] = errorMessage;
                     }
 
-                    return [formValid, formErrors];
+                    return [isFormValid, formErrors];
                 },
                 [true, {}],
             );
@@ -38,56 +38,54 @@ const makeValidator = (options = {}) => {
             formErrors: errors,
         };
     };
-};
 
-const _validateField = (rules, value, options) =>
-    rules.reduce((errorMessages, ruleOrOptions) => {
+const _validateField = (rules, value, options) => {
+    for (const ruleOrOptions in rules) {
         let applyRule;
         let getRuleErrorMessage;
 
         if (isPlainObject(ruleOrOptions)) {
             applyRule = ruleOrOptions.rule;
-            getRuleErrorMessage = options.getErrorMessage;
+            getRuleErrorMessage = ruleOrOptions.getErrorMessage;
         } else {
             applyRule = ruleOrOptions;
         }
 
         if (typeof applyRule !== 'function') {
-            return errorMessages;
+            continue;
         }
 
         const error = applyRule(value);
 
         if (!error) {
-            return errorMessages;
+            continue;
         }
 
-        const [errorName, errorMessageParameters] = error;
+        const [ruleName, errorMessageParameters] = error;
 
-        errorMessages.push(
-            _getRuleErrorMessage(errorName, errorMessageParameters, {
-                getRuleErrorMessage,
-                getErrorMessage: options.getErrorMessage,
-            }),
-        );
+        return _getValidationErrorMessage(ruleName, errorMessageParameters, {
+            getRuleErrorMessage,
+            getErrorMessage: options.getErrorMessage,
+        });
+    }
 
-        return errorMessages;
-    }, []);
+    return true;
+};
 
-const _getRuleErrorMessage = (
-    errorName,
+const _getValidationErrorMessage = (
+    ruleName,
     errorMessageParameters,
     { getRuleErrorMessage, getErrorMessage },
 ) => {
     if (typeof getRuleErrorMessage === 'function') {
-        return getRuleErrorMessage(errorName, errorMessageParameters);
+        return getRuleErrorMessage(ruleName, errorMessageParameters);
     }
 
     if (typeof getErrorMessage === 'function') {
-        return getErrorMessage(errorName, errorMessageParameters);
+        return getErrorMessage(ruleName, errorMessageParameters);
     }
 
-    return errorName;
+    return ruleName;
 };
 
 const _initErrorsState = fieldNames =>

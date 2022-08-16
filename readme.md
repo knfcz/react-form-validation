@@ -2,7 +2,14 @@
 
 [![npm version](https://img.shields.io/npm/v/@knfcz/react-form-validation.svg?style=flat)](https://www.npmjs.com/package/@knfcz/react-form-validation)
 
-Simple form validation hook for react/react-native
+The main goal of this package is to quickly setup basic form validation in your React projects
+
+Features:
+    - A form validation hook
+    - An easily extendable set of validation rules
+    - A quick way to generate validation error message to show to your end-user
+
+However, this lib does not include any React component, so you'll have to use yours
 
 Table of content:
 
@@ -33,15 +40,22 @@ import { makeValidator } from '@knfcz/react-form-validation';
 import translate from '../utils/translate'; // <- Some custom translation function
 
 export default makeValidator({
-    getErrorMessage: (errorName, errorMessageParameters) =>
+    // This function will be called to generate validation error messages 
+    // that will be displayed to the end-user
+    getErrorMessage: (ruleName, errorMessageParameters) =>
         translate(
-            `form.validation.errors.${errorName}`,
+            `form.validation.errors.${ruleName}`,
             errorMessageParameters,
         ),
 });
 ```
 
-You can pass a translation function to makeValidator, it will receive the rule name and parameters and should return the corresponding validation error message (the one you want to show to your end user)
+There is currently one available option :angel:
+
+| Option                  | Type/Signature                                               |                                                                  |
+|-------------------------|--------------------------------------------------------------|------------------------------------------------------------------|
+| options.getErrorMessage | (ruleName: string, errorMessageParameters: object) => string | Must return a validation error message to show to your end-users |
+
 
 Note: if you use [@knfcz/translator](https://www.npmjs.com/package/@knfcz/translator), you can find some translation examples in the /translation-examples folder in this repo :^)
 
