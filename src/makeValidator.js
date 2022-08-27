@@ -40,7 +40,7 @@ const makeValidator =
     };
 
 const _validateField = (rules, value, options) => {
-    for (const ruleOrOptions in rules) {
+    for (const ruleOrOptions of rules) {
         let applyRule;
         let getRuleErrorMessage;
 
@@ -69,7 +69,7 @@ const _validateField = (rules, value, options) => {
         });
     }
 
-    return true;
+    return false;
 };
 
 const _getValidationErrorMessage = (

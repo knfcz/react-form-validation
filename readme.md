@@ -5,6 +5,7 @@
 The main goal of this package is to quickly setup basic form validation in your React projects
 
 Features:
+
     - A form validation hook
     - An easily extendable set of validation rules
     - A quick way to generate validation error message to show to your end-user
@@ -44,7 +45,7 @@ export default makeValidator({
     // that will be displayed to the end-user
     getErrorMessage: (ruleName, errorMessageParameters) =>
         translate(
-            `form.validation.errors.${ruleName}`,
+            `form.validationError.${ruleName}`,
             errorMessageParameters,
         ),
 });
