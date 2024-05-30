@@ -5,12 +5,12 @@ const makeValidator =
     (options = {}) =>
     (validationRules, formState) => {
         const fieldNames = Object.keys(validationRules);
-        const [errors, setErrors] = useState(_initErrorsState(fieldNames));
+        const [errors, setErrors] = useState(_getInitialErrorState(fieldNames));
 
         const validateForm = () => {
             const [isFormValid, formErrors] = fieldNames.reduce(
                 ([isFormValid, formErrors], fieldName) => {
-                    const errorMessage = _validateField(
+                    const errorMessage = _getFieldError(
                         validationRules[fieldName],
                         formState[fieldName],
                         options,
@@ -39,7 +39,7 @@ const makeValidator =
         };
     };
 
-const _validateField = (rules, value, options) => {
+const _getFieldError = (rules, value, options) => {
     for (const ruleOrOptions of rules) {
         let applyRule;
         let getRuleErrorMessage;
@@ -88,7 +88,7 @@ const _getValidationErrorMessage = (
     return ruleName;
 };
 
-const _initErrorsState = fieldNames =>
+const _getInitialErrorState = fieldNames =>
     fieldNames.reduce((errors, fieldName) => {
         errors[fieldName] = '';
 

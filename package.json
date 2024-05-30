@@ -16,7 +16,9 @@
         "url": "https://github.com/knfcz/react-form-validation"
     },
     "dependencies": {
-        "@knfcz/js-utils": "^3.0.4",
+        "@knfcz/js-utils": "^3.0.4"
+    },
+    "peerDependencies": {
         "react": "^18.2.0"
     },
     "devDependencies": {
