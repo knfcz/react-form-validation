@@ -19,7 +19,7 @@
         "@knfcz/js-utils": "^3.0.4"
     },
     "peerDependencies": {
-        "react": "^18.2.0"
+        "react": "^17.0.0"
     },
     "devDependencies": {
         "@knfcz/prettierrc": "^1.0.1"
