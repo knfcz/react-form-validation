@@ -1,7 +1,7 @@
 {
     "name": "@knfcz/react-form-validation",
     "author": "knfcz <knfcz@gunmetalblack.net>",
-    "version": "2.1.4",
+    "version": "2.1.5",
     "description": "Simple form validation library for react and react-native",
     "main": "src/index.js",
     "prettier": "@knfcz/prettierrc",
